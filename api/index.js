@@ -5,7 +5,7 @@ const routerAPI = require('./routes');
 //llamar a cors
 const cors = require('cors');
 //llamar a la BBDD
-const dbcon = require('./connection')
+const dbcon = require('./connection');
 
 //llamar al modulo de middleware de error
 const { logErrors, errorHandler, boomErrorHandler } = require('./middlewares/error.handler');
@@ -21,7 +21,7 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 
 //lista blanca de dominions permitidos
-const whiteList = ['http://localhost:8080', 'https://myapp.com', 'http://127.0.0.1:5500'];
+const whiteList = ['http://localhost:8080', 'http://127.0.0.1:5500', 'http://127.0.0.1:3200'];
 const options = {
   origin: (origin, callback) => {
     if (whiteList.includes(origin) || !origin) {

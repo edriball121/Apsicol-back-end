@@ -1,11 +1,11 @@
 //llamar a express constructor
 const express = require('express');
 //llamar al servicio
-const productsService = require('./../services/products.service');
+const productsService = require('./../services/products2.service');
 //llamar al middleware de Schemas
 const validatorHandler = require('./../middlewares/validator.handler');
 //llamar a los esquemas
-const { createProductSchema, updateProductSchema, getProductSchema } = require('./../schemas/product.schema');
+const { createProductSchema, updateProductSchema, getProductSchema } = require('./../schemas/product2.schema');
 //llamar el router
 const router = express.Router();
 //crear una instancia de servicio
