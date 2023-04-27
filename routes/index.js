@@ -5,6 +5,7 @@ const farmerRouter = require('./farmer.router');
 const adminRouter = require('./admin.router');
 const consultanRouter = require('./consultant.router');
 const agricolaRouter = require('./farming.router');
+const pecuarioRouter = require('./livestock.router')
 
 function routerAPI(app) {
   //definir route padre
@@ -15,6 +16,7 @@ function routerAPI(app) {
   router.use('/admin', adminRouter);
   router.use('/consultant', consultanRouter);
   router.use('/farming', agricolaRouter);
+  router.use('/livestock', pecuarioRouter);
 }
 
 module.exports = routerAPI;
