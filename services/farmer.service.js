@@ -80,6 +80,8 @@ class farmerService {
       gra_fecha_creacion,
       gra_perfil_laboral,
     } = farmerData;
+     // Generar un hash de la contraseña
+  const passwordHash = await bcrypt.hash(gra_password, 10);
     return new Promise((resolve, reject) => {
       const sql =
         'UPDATE granjero SET gra_cedula=?, gra_nombre=?, gra_apellido=?, gra_password=?, gra_telefono=?, gra_email=?, gra_direccion=?, gra_fecha_nacimiento=?, gra_fecha_creacion=?,gra_perfil_laboral=? WHERE gra_cedula=?';
@@ -89,7 +91,7 @@ class farmerService {
           gra_cedula,
           gra_nombre,
           gra_apellido,
-          gra_password,
+          passwordHash,
           gra_telefono,
           gra_email,
           gra_direccion,
