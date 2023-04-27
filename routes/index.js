@@ -3,7 +3,8 @@ const express = require('express');
 //importar las rutas de los archivos .router.js
 const farmerRouter = require('./farmer.router');
 const adminRouter = require('./admin.router');
-const consultanRouter = require('./consultant.router')
+const consultanRouter = require('./consultant.router');
+const agricolaRouter = require('./farming.router');
 
 function routerAPI(app) {
   //definir route padre
@@ -13,6 +14,7 @@ function routerAPI(app) {
   router.use('/farmer', farmerRouter);
   router.use('/admin', adminRouter);
   router.use('/consultant', consultanRouter);
+  router.use('/farming', agricolaRouter);
 }
 
 module.exports = routerAPI;
