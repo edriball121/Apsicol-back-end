@@ -2,16 +2,16 @@
 const Joi = require("joi");
 
 //crear schema para cada uno de los campos
-const adm_cedula = Joi.string().max(15);
+const adm_cedula = Joi.string().max(11);
 const adm_nombre = Joi.string().min(2).max(45).regex(/^[a-zA-Z ]+$/);
 const adm_apellido = Joi.string().min(2).max(45).regex(/^[a-zA-Z ]+$/);
-const adm_password = Joi.string().max(45);
-const adm_telefono = Joi.string().min(6).max(45);
+const adm_password = Joi.string().max(255);
+const adm_telefono = Joi.string().min(6).max(11);
 const adm_email = Joi.string().max(45).regex(/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[\w-]{2,}$/i);
 const adm_direccion = Joi.string().min(5).max(45);
 const adm_fecha_nacimiento = Joi.string();
 const adm_fecha_creacion = Joi.string().regex(/^[0-9-]+$/);
-const adm_rol = Joi.string().regex(/^[a-zA-Z,.;:" ]+$/);
+const adm_rol = Joi.string().max(45).regex(/^[a-zA-Z,.;:" ]+$/);
 
 //Regla para crear granjero
 const createAdminSchema = Joi.object({

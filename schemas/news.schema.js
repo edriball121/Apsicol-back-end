@@ -4,11 +4,11 @@ const Joi = require("joi");
 //crear schema para cada uno de los campos
 const not_codigo = Joi.number();
 const not_nombre = Joi.string().min(2).max(45).regex(/^[a-zA-Z,.;:" ]+$/);
-const not_descripcion = Joi.string().min(2).max(100).regex(/^[a-zA-Z,.;:" ]+$/);
-const not_foto = Joi.string();
+const not_descripcion = Joi.string().min(2).max(1000).regex(/^[a-zA-Z,.;:" ]+$/);
+const not_foto = Joi.string().max(45);
 const not_fecha_creacion = Joi.string().regex(/^[0-9-]+$/);
-const not_url = Joi.string();
-const not_subtitulo = Joi.string()
+const not_url = Joi.string().max(45);
+const not_subtitulo = Joi.string().max(45);
 const fk_not_adm_cedula = Joi.string().max(11);
 
 //Regla para crear noticia
