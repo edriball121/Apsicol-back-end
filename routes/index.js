@@ -7,6 +7,7 @@ const consultanRouter = require('./consultant.router');
 const agricolaRouter = require('./farming.router');
 const pecuarioRouter = require('./livestock.router');
 const noticiasRouter = require('./news.route');
+const empresaRouter = require('./company.router');
 
 function routerAPI(app) {
   //definir route padre
@@ -19,6 +20,7 @@ function routerAPI(app) {
   router.use('/farming', agricolaRouter);
   router.use('/livestock', pecuarioRouter);
   router.use('/news', noticiasRouter);
+  router.use('/company', empresaRouter);
 }
 
 module.exports = routerAPI;
