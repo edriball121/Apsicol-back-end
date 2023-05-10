@@ -10,6 +10,7 @@ const newsRouter = require('./news.route');
 const companyRouter = require('./company.router');
 const familyBasketRouter = require('./familyBasket.router');
 const cityRouter = require('./city.router');
+const consultationRouter = require('./consultation.router');
 
 function routerAPI(app) {
   //definir route padre
@@ -25,6 +26,7 @@ function routerAPI(app) {
   router.use('/company', companyRouter);
   router.use('/familyBasket', familyBasketRouter);
   router.use('/city', cityRouter);
+  router.use('/consultation', consultationRouter);
 }
 
 module.exports = routerAPI;
