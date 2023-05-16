@@ -15,6 +15,7 @@ const jobRouter = require('./job.router');
 const farmRouter = require('./farm.router');
 const queryMessageRouter = require('./queryMessage.router');
 const productRouter = require('./product.router');
+const servicesRouter = require('./services.router');
 
 function routerAPI(app) {
   //definir route padre
@@ -35,6 +36,7 @@ function routerAPI(app) {
   router.use('/farm', farmRouter);
   router.use('/queryMessage', queryMessageRouter);
   router.use('/product', productRouter);
+  router.use('/services', servicesRouter);
 }
 
 module.exports = routerAPI;
