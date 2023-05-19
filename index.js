@@ -21,7 +21,7 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 
 //lista blanca de dominions permitidos
-const whiteList = ['http://localhost:8080', 'https://myapp.com', 'http://127.0.0.1:5500'];
+const whiteList = ['http://localhost:8080', 'https://myapp.com', 'http://127.0.0.1:5500', 'http://localhost:4200'];
 const options = {
   origin: (origin, callback) => {
     if (whiteList.includes(origin) || !origin) {
