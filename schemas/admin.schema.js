@@ -27,6 +27,11 @@ const createAdminSchema = Joi.object({
   adm_rol: adm_rol.required(),
 });
 
+const loginAdminSchema = Joi.object({
+  adm_cedula: Joi.string().required(),
+  adm_password: Joi.string().required()
+});
+
 //Regla para editar granjero
 const updateAdminSchema = Joi.object({
   adm_cedula: adm_cedula,
@@ -47,4 +52,4 @@ const getAdminSchema = Joi.object({
 });
 
 //Exportar modulo con sus funciones
-module.exports = {createAdminSchema, updateAdminSchema, getAdminSchema}
+module.exports = {createAdminSchema, updateAdminSchema, getAdminSchema, loginAdminSchema}
