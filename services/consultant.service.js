@@ -23,6 +23,32 @@ class consultantService {
       });
     });
   }
+
+  //login consultor JWT
+  async loginConsultant(consultantData) {
+    const { con_cedula, con_password } = consultantData;
+    const sql = 'SELECT * FROM consultor WHERE con_cedula=?';
+    return new Promise((resolve, reject) => {
+      conn.query(sql, [con_cedula], async (err, res) => {
+        if (err) {
+          reject(err);
+        } else {
+          if (res.length > 0) {
+            const consultant = res[0];
+            const passwordMatch = await bcrypt.compare(con_password, consultant.con_password);
+            if (passwordMatch) {
+              resolve(consultant);
+            } else {
+              reject('La contraseña no coincide');
+            }
+          } else {
+            reject('No se encontraron datos');
+          }
+        }
+      });
+    });
+  }
+
   //Crear granjero
   async addConsultant(consultantData) {
     const {
@@ -39,7 +65,7 @@ class consultantService {
       con_annos_experiencia,
     } = consultantData;
     // Generar un hash de la contraseña
-  const passwordHash = await bcrypt.hash(con_password, 10);
+    const passwordHash = await bcrypt.hash(con_password, 10);
     return new Promise((resolve, reject) => {
       const sql =
         'INSERT INTO consultor (con_cedula, con_nombre, con_apellido, con_password, con_telefono, con_email, con_direccion, con_fecha_nacimiento, con_fecha_creacion, con_profesion, con_annos_experiencia) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)';
@@ -84,7 +110,7 @@ class consultantService {
       con_annos_experiencia
     } = consultantData;
     // Generar un hash de la contraseña
-  const passwordHash = await bcrypt.hash(con_password, 10);
+    const passwordHash = await bcrypt.hash(con_password, 10);
     return new Promise((resolve, reject) => {
       const sql =
         'UPDATE consultor SET con_cedula=?, con_nombre=?, con_apellido=?, con_password=?, con_telefono=?, con_email=?, con_direccion=?, con_fecha_nacimiento=?, con_fecha_creacion=?,con_profesion=?, con_annos_experiencia=? WHERE con_cedula=?';
