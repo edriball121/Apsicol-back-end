@@ -11,7 +11,7 @@ const {
   getAdminSchema,
   updateAdminSchema,
 } = require('./../schemas/admin.schema');
-const validateToken = require('./../middlewares/tockenValidate.handler');
+const verifyToken = require('./../middlewares/tockenValidate.handler');
 //llamar el router
 const router = express.Router();
 //crear una instancia de servicio
@@ -30,26 +30,13 @@ router.post('/login', async (req, res) => {
   }
 });
 //ruta de prueba para validar tocken
-router.post('/test', verifyToken,(req, res)=>{
+router.post('/test', verifyToken, (req, res) => {
   console.log(req.data)
   res.json('ruta protegida');
 })
-//funcion de prueba para validar el tocken
-function verifyToken(req,res,next){
-  if(!req.headers.authorization) return res.status(401).json('No autorizado');
-  const token = req.headers.authorization.substr(7);
-  if(token !== ''){
-    const content = jwt.verify(token, 'admin');
-    req.data = content;
-    next();
-  }else{
-    res.status(401).json('Token vacio');
-  }
-  console.log(token);
-}
 
 //Ruta para obtener administrador
-router.get('/', async (req, res) => {
+router.get('/', verifyToken, async (req, res) => {
   try {
     const admin = await service.getAdmin();
     res.status(200).json(admin);

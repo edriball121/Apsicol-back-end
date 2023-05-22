@@ -61,12 +61,13 @@ class adminService {
       adm_fecha_nacimiento,
       adm_fecha_creacion,
       adm_rol,
+      rol,
     } = adminData;
     // Generar un hash de la contraseña
     const passwordHash = await bcrypt.hash(adm_password, 10);
     return new Promise((resolve, reject) => {
       const sql =
-        'INSERT INTO administrador (adm_cedula, adm_nombre, adm_apellido, adm_password, adm_telefono, adm_email, adm_direccion, adm_fecha_nacimiento, adm_fecha_creacion,adm_rol) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+        'INSERT INTO administrador (adm_cedula, adm_nombre, adm_apellido, adm_password, adm_telefono, adm_email, adm_direccion, adm_fecha_nacimiento, adm_fecha_creacion, adm_rol, rol) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
       conn.query(
         sql,
         [
@@ -80,6 +81,7 @@ class adminService {
           adm_fecha_nacimiento,
           adm_fecha_creacion,
           adm_rol,
+          rol,
         ],
         (err, res) => {
           if (err) {
@@ -91,7 +93,7 @@ class adminService {
       );
     });
   }
-  //Editar granjero
+  //Editar administrador
   async editAdmin(cedula, adminData) {
     const {
       adm_cedula,
@@ -104,12 +106,13 @@ class adminService {
       adm_fecha_nacimiento,
       adm_fecha_creacion,
       adm_rol,
+      rol,
     } = adminData;
     // Generar un hash de la contraseña
     const passwordHash = await bcrypt.hash(adm_password, 10);
     return new Promise((resolve, reject) => {
       const sql =
-        'UPDATE administrador SET adm_cedula=?, adm_nombre=?, adm_apellido=?, adm_password=?, adm_telefono=?, adm_email=?, adm_direccion=?, adm_fecha_nacimiento=?, adm_fecha_creacion=?,adm_rol=? WHERE adm_cedula=?';
+        'UPDATE administrador SET adm_cedula=?, adm_nombre=?, adm_apellido=?, adm_password=?, adm_telefono=?, adm_email=?, adm_direccion=?, adm_fecha_nacimiento=?, adm_fecha_creacion=?,adm_rol=?, rol=? WHERE adm_cedula=?';
       conn.query(
         sql,
         [
@@ -123,6 +126,7 @@ class adminService {
           adm_fecha_nacimiento,
           adm_fecha_creacion,
           adm_rol,
+          rol,
           cedula,
         ],
         (err, res) => {
