@@ -12,6 +12,7 @@ const gra_direccion = Joi.string().min(5).max(45);
 const gra_fecha_nacimiento = Joi.string();
 const gra_fecha_creacion = Joi.string().regex(/^[0-9-]+$/);
 const gra_perfil_laboral = Joi.string().max(45).regex(/^[a-zA-Z,.;:" ]+$/);
+const rol = Joi.string().max(11).regex(/^[a-zA-Z ]+$/);
 
 //Regla para crear granjero
 const createFarmerSchema = Joi.object({
@@ -25,6 +26,7 @@ const createFarmerSchema = Joi.object({
   gra_fecha_nacimiento: gra_fecha_nacimiento.required(),
   gra_fecha_creacion: gra_fecha_creacion.required(),
   gra_perfil_laboral: gra_perfil_laboral.required(),
+  rol: rol.required(),
 });
 
 //Regla para editar granjero
@@ -38,7 +40,8 @@ const updateFarmerSchema = Joi.object({
   gra_direccion: gra_direccion,
   gra_fecha_nacimiento: gra_fecha_nacimiento,
   gra_fecha_creacion: gra_fecha_creacion,
-  gra_perfil_laboral: gra_perfil_laboral
+  gra_perfil_laboral: gra_perfil_laboral,
+  rol: rol,
 });
 
 //Regla para eliminar y seleccionar granjero

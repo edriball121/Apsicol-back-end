@@ -12,6 +12,7 @@ const adm_direccion = Joi.string().min(5).max(45);
 const adm_fecha_nacimiento = Joi.string();
 const adm_fecha_creacion = Joi.string().regex(/^[0-9-]+$/);
 const adm_rol = Joi.string().max(45).regex(/^[a-zA-Z,.;:" ]+$/);
+const rol = Joi.string().max(11).regex(/^[a-zA-Z ]+$/);
 
 //Regla para crear granjero
 const createAdminSchema = Joi.object({
@@ -25,12 +26,9 @@ const createAdminSchema = Joi.object({
   adm_fecha_nacimiento: adm_fecha_nacimiento.required(),
   adm_fecha_creacion: adm_fecha_creacion.required(),
   adm_rol: adm_rol.required(),
+  rol: rol.required()
 });
 
-const loginAdminSchema = Joi.object({
-  adm_cedula: Joi.string().required(),
-  adm_password: Joi.string().required()
-});
 
 //Regla para editar granjero
 const updateAdminSchema = Joi.object({
@@ -43,7 +41,8 @@ const updateAdminSchema = Joi.object({
   adm_direccion: adm_direccion,
   adm_fecha_nacimiento: adm_fecha_nacimiento,
   adm_fecha_creacion: adm_fecha_creacion,
-  adm_rol: adm_rol
+  adm_rol: adm_rol,
+  rol:rol,
 });
 
 //Regla para eliminar y seleccionar granjero
@@ -52,4 +51,4 @@ const getAdminSchema = Joi.object({
 });
 
 //Exportar modulo con sus funciones
-module.exports = {createAdminSchema, updateAdminSchema, getAdminSchema, loginAdminSchema}
+module.exports = {createAdminSchema, updateAdminSchema, getAdminSchema}
