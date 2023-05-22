@@ -29,11 +29,6 @@ router.post('/login', async (req, res) => {
     res.status(404).json({ error: error });
   }
 });
-//ruta de prueba para validar tocken
-router.post('/test', verifyToken, (req, res) => {
-  console.log(req.data)
-  res.json('ruta protegida');
-})
 
 //Ruta para obtener administrador
 router.get('/', verifyToken, async (req, res) => {
