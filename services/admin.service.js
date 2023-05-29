@@ -33,7 +33,8 @@ class adminService {
 
   //Buscar administrador
   async getAdmin() {
-    const sql = 'SELECT * FROM administrador';
+    //const sql = "SELECT *, DATE_FORMAT(adm_fecha_nacimiento, '%Y-%m-%d') AS adm_fecha_nacimiento, DATE_FORMAT(adm_fecha_creacion, '%Y-%m-%d') AS adm_fecha_creacion FROM administrador";
+const sql = "SELECT * FROM administrador"
     return new Promise((resolve, reject) => {
       conn.query(sql, (err, res) => {
         if (err) {

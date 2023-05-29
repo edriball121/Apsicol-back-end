@@ -31,7 +31,7 @@ router.post('/login', async (req, res) => {
 });
 
 //Ruta para obtener administrador
-router.get('/', verifyToken, async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const admin = await service.getAdmin();
     res.status(200).json(admin);
