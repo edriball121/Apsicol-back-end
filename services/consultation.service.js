@@ -7,7 +7,7 @@ class consultationService {
   }
   //Buscar consulta
   async getConsultation() {
-    const sql = 'SELECT * FROM consulta';
+    const sql = "SELECT *, DATE_FORMAT(con_fecha, '%Y-%m-%d') AS con_fecha, DATE_FORMAT(con_fecha_finalizacion,'%Y-%m-%d') AS con_fecha_finalizacion  FROM consulta";
     return new Promise((resolve, reject) => {
       conn.query(sql, (err, res) => {
         if (err) {
