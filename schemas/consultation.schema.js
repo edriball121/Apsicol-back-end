@@ -4,8 +4,8 @@ const Joi = require("joi");
 //crear schema para cada uno de los campos
 const con_radicado = Joi.number();
 const con_nombre = Joi.string().min(2).max(45).regex(/^[a-zA-Z ]+$/);
-const con_tipo_consulta = Joi.string().min(2).max(45).regex(/^[a-zA-Z,.;:" ]+$/);
-const con_descripcion = Joi.string().min(2).max(45).regex(/^[a-zA-Z,.;:" ]+$/);
+const con_tipo_consulta = Joi.string().min(2).max(45).regex(/^[A-Za-z0-9\s.,;:!?"'-]+$/);
+const con_descripcion = Joi.string().min(2).max(45).regex(/^[A-Za-z0-9\s.,;:!?"'-]+$/);
 const con_fecha = Joi.string().regex(/^[0-9-]+$/);
 const con_estado = Joi.string().min(2).max(45).regex(/^[a-zA-Z ]+$/);
 const con_calificacion = Joi.string().min(2).max(45).regex(/^[a-zA-Z0-9- ]+$/);
