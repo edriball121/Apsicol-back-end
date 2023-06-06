@@ -39,6 +39,23 @@ class consultationService {
       });
     });
   }
+   //Buscar por granjero
+   async getDocumenUser(cedula) {
+    const sql = 'SELECT * FROM consulta WHERE fk_con_gra_cedula=?';
+    return new Promise((resolve, reject) => {
+      conn.query(sql, cedula, (err, res) => {
+        if (err) {
+          reject(err);
+        } else {
+          if (res.length > 0) {
+            resolve(res);
+          } else {
+            reject('No se encontraron datos');
+          }
+        }
+      });
+    });
+  }
   //Crear consulta
   async addConsultation(consultationData) {
     const {
