@@ -8,6 +8,7 @@ const {
   createConsultationSchema,
   getConsultationSchema,
   updateConsultationSchema,
+  getConsultationDocumentSchema,
 } = require('./../schemas/consultation.schema');
 //llamar el router
 const router = express.Router();
@@ -32,6 +33,22 @@ router.get(
       const { radicado } = req.params;
       const consultantion = await service.getOneConsultation(
         parseInt(radicado)
+      );
+      res.status(200).json(consultantion);
+    } catch (error) {
+      res.status(404).json({ error: error });
+    }
+  }
+);
+//Ruta para obtener consultas por usuario
+router.get(
+  '/document/:cedula',
+  validatorHandler(getConsultationDocumentSchema, 'params'),
+  async (req, res) => {
+    try {
+      const { cedula } = req.params;
+      const consultantion = await service.getDocumenUser(
+        parseInt(cedula)
       );
       res.status(200).json(consultantion);
     } catch (error) {

@@ -42,6 +42,10 @@ const updateConsultationSchema = Joi.object({
 const getConsultationSchema = Joi.object({
   radicado: con_radicado.required()
 });
+//Regla para seleccionar cedula
+const getConsultationDocumentSchema = Joi.object({
+  cedula: fk_con_gra_cedula.required()
+});
 
 //Exportar modulo con sus funciones
-module.exports = {createConsultationSchema,updateConsultationSchema,getConsultationSchema}
+module.exports = {createConsultationSchema,updateConsultationSchema,getConsultationSchema,getConsultationDocumentSchema}
