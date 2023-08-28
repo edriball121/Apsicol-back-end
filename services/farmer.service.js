@@ -10,7 +10,7 @@ class farmerService {
   //login agricultor JWT
   async loginFarmer(farmerData) {
     const { gra_cedula, gra_password } = farmerData;
-    const sql = 'SELECT * FROM granjero WHERE gra_cedula=?';
+    const sql = "SELECT * FROM granjero WHERE gra_cedula=?";
     return new Promise((resolve, reject) => {
       conn.query(sql, [gra_cedula], async (err, res) => {
         if (err) {
@@ -34,7 +34,7 @@ class farmerService {
 
   //Buscar granjeros
   async getFarmer() {
-    const sql = 'SELECT * FROM granjero';
+    const sql = "SELECT *, DATE_FORMAT(gra_fecha_nacimiento, '%Y-%m-%d') AS gra_fecha_nacimiento, DATE_FORMAT(gra_fecha_creacion, '%Y-%m-%d') AS gra_fecha_creacion  FROM granjero";
     return new Promise((resolve, reject) => {
       conn.query(sql, (err, res) => {
         if (err) {
