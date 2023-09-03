@@ -52,6 +52,10 @@ conn.connect(function(err){
   }
 });
 
+// Aumentar el límite de tamaño de solicitud a 20MB (puedes ajustar esto según tus necesidades)
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ extended: true, limit: '50mb' }));
+
 //routes
 //req=request y res=response
 app.get('/api', (req, res) => {
