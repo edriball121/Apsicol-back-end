@@ -5,7 +5,7 @@ const Joi = require("joi");
 const not_codigo = Joi.number();
 const not_nombre = Joi.string().min(2).max(45).regex(/^[a-zA-Z,.;:" ]+$/);
 const not_descripcion = Joi.string().min(2).max(1000).regex(/^[a-zA-Z,.;:" ]+$/);
-const not_foto = Joi.string().max(45);
+const not_foto = Joi.string();
 const not_fecha_creacion = Joi.string().regex(/^[0-9-]+$/);
 const not_url = Joi.string().max(45);
 const not_subtitulo = Joi.string().max(45);
@@ -13,7 +13,7 @@ const fk_not_adm_cedula = Joi.string().max(11);
 
 //Regla para crear noticia
 const createNewsSchema = Joi.object({
-  not_codigo: not_codigo.required(),
+  not_codigo: not_codigo,
   not_nombre: not_nombre.required(),
   not_descripcion: not_descripcion.required(),
   not_foto: not_foto.required(),

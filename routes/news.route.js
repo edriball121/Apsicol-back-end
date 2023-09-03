@@ -23,7 +23,7 @@ router.get('/', async (req, res) => {
     res.status(404).json({ error: error });
   }
 });
-//Ruta para obtener 5 noticias
+//Ruta para obtener 4 noticias
 router.get('/top', async (req, res) => {
   try {
     const newsTop = await service.getNewsTop();

@@ -7,7 +7,7 @@ class newsService {
   }
   //Buscar noticias
   async getNews() {
-    const sql = 'SELECT * FROM noticias';
+    const sql = "SELECT *, DATE_FORMAT(not_fecha_creacion, '%Y-%m-%d') AS not_fecha_creacion FROM noticias";
     return new Promise((resolve, reject) => {
       conn.query(sql, (err, res) => {
         if (err) {
@@ -22,10 +22,10 @@ class newsService {
       });
     });
   }
-  //obtener las ultimas 5 noticias
+  //obtener las ultimas 4 noticias
   async getNewsTop() {
     const sql =
-      'SELECT * FROM noticias ORDER BY not_fecha_creacion DESC LIMIT 5';
+      "SELECT *, DATE_FORMAT(not_fecha_creacion, '%Y-%m-%d') AS not_fecha_creacion FROM noticias ORDER BY not_fecha_creacion DESC LIMIT 4";
     return new Promise((resolve, reject) => {
       conn.query(sql, (err, res) => {
         if (err) {
