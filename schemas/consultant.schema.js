@@ -13,6 +13,7 @@ const con_fecha_nacimiento = Joi.string();
 const con_fecha_creacion = Joi.string().regex(/^[0-9-]+$/);
 const con_profesion = Joi.string().max(45).regex(/^[a-zA-Z,.;:" ]+$/);
 const con_annos_experiencia = Joi.number();
+const rol = Joi.string().max(11).regex(/^[a-zA-Z ]+$/);
 
 //Regla para crear granjero
 const createConsultantSchema = Joi.object({
@@ -27,6 +28,7 @@ const createConsultantSchema = Joi.object({
   con_fecha_creacion: con_fecha_creacion.required(),
   con_profesion: con_profesion.required(),
   con_annos_experiencia : con_annos_experiencia.required(),
+  rol: rol.required(),
 });
 
 //Regla para editar granjero
@@ -42,6 +44,7 @@ const updateConsultantSchema = Joi.object({
   con_fecha_creacion: con_fecha_creacion,
   con_profesion: con_profesion,
   con_annos_experiencia : con_annos_experiencia,
+  rol: rol,
 });
 
 //Regla para eliminar y seleccionar granjero
