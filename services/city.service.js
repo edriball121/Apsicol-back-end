@@ -24,11 +24,11 @@ class cityService {
   }
   //Crear ciudad
   async addCity(cityData) {
-    const { ciu_codigo, ciu_nombre, ciu_estado } = cityData;
+    const { ciu_codigo, ciu_nombre, ciu_departamento, ciu_cod_postal } = cityData;
     return new Promise((resolve, reject) => {
       const sql =
-        'INSERT INTO ciudad (ciu_codigo, ciu_nombre, ciu_estado) VALUES (?, ?, ?)';
-      conn.query(sql, [ciu_codigo, ciu_nombre, ciu_estado], (err, res) => {
+        'INSERT INTO ciudad (ciu_codigo, ciu_nombre, ciu_departamento, ciu_cod_postal) VALUES (?, ?, ?, ?)';
+      conn.query(sql, [ciu_codigo, ciu_nombre, ciu_departamento, ciu_cod_postal], (err, res) => {
         if (err) {
           reject(err);
         } else {
@@ -39,11 +39,11 @@ class cityService {
   }
   //Editar ciudad
   async editCity(id, cityData) {
-    const { ciu_codigo, ciu_nombre, ciu_estado } = cityData;
+    const { ciu_codigo, ciu_nombre, ciu_departamento, ciu_cod_postal } = cityData;
     return new Promise((resolve, reject) => {
       const sql =
-        'UPDATE ciudad SET ciu_codigo=?, ciu_nombre=?, ciu_estado=? WHERE ciu_codigo=?';
-      conn.query(sql, [ciu_codigo, ciu_nombre, ciu_estado, id], (err, res) => {
+        'UPDATE ciudad SET ciu_codigo=?, ciu_nombre=?, ciu_departamento=?, ciu_cod_postal=? WHERE ciu_codigo=?';
+      conn.query(sql, [ciu_codigo, ciu_nombre, ciu_departamento, ciu_cod_postal, id], (err, res) => {
         if (err) {
           reject(err);
         } else {
