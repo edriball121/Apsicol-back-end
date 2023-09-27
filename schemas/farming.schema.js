@@ -9,12 +9,12 @@ const Ape_codigo = Joi.number();
 const Ape_nombre = Joi.string().min(2).max(45).regex(/^[a-zA-Z ]+$/);
 const Ape_tipo = Joi.string().min(2).max(45).regex(/^[a-zA-Z,.;:" ]+$/);
 const Ape_fecha_creacion = Joi.string().regex(/^[0-9-]+$/);
-const Ape_Foto = Joi.string().max(120);
+const Ape_Foto = Joi.string();
 const Ape_Descripcion = Joi.string().max(1000).regex(/^[a-zA-Z,.;:" ]+$/);
 
 //Regla para crear especie agricola
 const createFarmingSchema = Joi.object({
-  Ape_codigo: Ape_codigo.required(),
+  Ape_codigo: Ape_codigo,
   Ape_nombre: Ape_nombre.required(),
   Ape_tipo: Ape_tipo.required(),
   Ape_fecha_creacion: Ape_fecha_creacion.required(),

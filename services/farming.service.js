@@ -7,7 +7,7 @@ class farmingService {
   }
   //Buscar productos agricolas
   async getFarming() {
-    const sql = 'SELECT * FROM agricola';
+    const sql = "SELECT *, DATE_FORMAT(Ape_fecha_creacion, '%Y-%m-%d') AS Ape_fecha_creacion FROM agricola";
     return new Promise((resolve, reject) => {
       conn.query(sql, (err, res) => {
         if (err) {
