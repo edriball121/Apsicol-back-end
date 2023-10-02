@@ -7,7 +7,7 @@ class livestockService {
   }
   //Buscar productos pecuario
   async getLivestock() {
-    const sql = 'SELECT * FROM pecuario';
+    const sql = "SELECT *, DATE_FORMAT(Ape_fecha_creacion, '%Y-%m-%d') AS Ape_fecha_creacion FROM pecuario";
     return new Promise((resolve, reject) => {
       conn.query(sql, (err, res) => {
         if (err) {
