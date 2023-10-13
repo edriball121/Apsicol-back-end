@@ -7,7 +7,8 @@ class familyBasketService {
   }
   //Buscar canasta familiar
   async getFamilyBasket() {
-    const sql = 'SELECT * FROM canasta_familiar';
+    const sql =
+      "SELECT *, DATE_FORMAT(cta_fecha, '%Y-%m-%d') AS cta_fecha FROM canasta_familiar";
     return new Promise((resolve, reject) => {
       conn.query(sql, (err, res) => {
         if (err) {
@@ -61,12 +62,12 @@ class familyBasketService {
   async editFamilyBasket(id, familyBasketData) {
     const {
       cta_codigo,
-          cta_nombre,
-          cta_precio,
-          cta_fecha,
-          cta_ciudad,
-          fk_cta_adm_cedula,
-          fk_cta_ciu_codigo,
+      cta_nombre,
+      cta_precio,
+      cta_fecha,
+      cta_ciudad,
+      fk_cta_adm_cedula,
+      fk_cta_ciu_codigo,
     } = familyBasketData;
     return new Promise((resolve, reject) => {
       const sql =

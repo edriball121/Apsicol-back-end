@@ -12,7 +12,7 @@ const fk_cta_ciu_codigo = Joi.number();
 
 //Regla para crear producto canasta familiar
 const createFamilyBasketSchema = Joi.object({
-  cta_codigo: cta_codigo.required(),
+  cta_codigo: cta_codigo,
   cta_nombre: cta_nombre.required(),
   cta_precio: cta_precio.required(),
   cta_fecha: cta_fecha.required(),
