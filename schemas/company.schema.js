@@ -6,13 +6,13 @@ const emp_codigo = Joi.number();
 const emp_nombre = Joi.string().min(2).max(45).regex(/^[a-zA-Z ]+$/);
 const emp_descripcion = Joi.string().min(2).max(1000).regex(/^[a-zA-Z,.;:" ]+$/);
 const emp_telefono = Joi.string().min(6).max(11);
-const emp_foto = Joi.string().max(45);
+const emp_foto = Joi.string();
 const emp_subtitulo = Joi.string().max(45);
 
 
 //Regla para crear granjero
 const createCompanySchema = Joi.object({
-  emp_codigo : emp_codigo .required(),
+  emp_codigo : emp_codigo,
   emp_nombre: emp_nombre.required(),
   emp_descripcion: emp_descripcion.required(),
   emp_telefono: emp_telefono.required(),
