@@ -7,7 +7,7 @@ class jobService {
   }
   //Buscar trabajo
   async getJob() {
-    const sql = 'SELECT * FROM empleo';
+    const sql = "SELECT *, DATE_FORMAT(emp_fecha_creacion, '%Y-%m-%d') AS emp_fecha_creacion FROM empleo";
     return new Promise((resolve, reject) => {
       conn.query(sql, (err, res) => {
         if (err) {
@@ -27,19 +27,19 @@ class jobService {
     const {
       emp_codigo,
       emp_nombre,
-      emp_termnos_y_condiciones,
+      emp_terminos_y_condiciones,
       emp_fecha_creacion,
       emp_descripcion,
     } = jobData;
     return new Promise((resolve, reject) => {
       const sql =
-        'INSERT INTO empleo (emp_codigo, emp_nombre, emp_termnos_y_condiciones, emp_fecha_creacion, emp_descripcion) VALUES (?, ?, ?, ?, ?)';
+        'INSERT INTO empleo (emp_codigo, emp_nombre, emp_terminos_y_condiciones, emp_fecha_creacion, emp_descripcion) VALUES (?, ?, ?, ?, ?)';
       conn.query(
         sql,
         [
           emp_codigo,
           emp_nombre,
-          emp_termnos_y_condiciones,
+          emp_terminos_y_condiciones,
           emp_fecha_creacion,
           emp_descripcion,
         ],
@@ -58,19 +58,19 @@ class jobService {
     const {
       emp_codigo,
       emp_nombre,
-      emp_termnos_y_condiciones,
+      emp_terminos_y_condiciones,
       emp_fecha_creacion,
       emp_descripcion,
     } = jobData;
     return new Promise((resolve, reject) => {
       const sql =
-        'UPDATE empleo SET emp_codigo=?, emp_nombre=?, emp_termnos_y_condiciones=?, emp_fecha_creacion=?, emp_descripcion=? WHERE emp_codigo=?';
+        'UPDATE empleo SET emp_codigo=?, emp_nombre=?, emp_terminos_y_condiciones=?, emp_fecha_creacion=?, emp_descripcion=? WHERE emp_codigo=?';
       conn.query(
         sql,
         [
           emp_codigo,
           emp_nombre,
-          emp_termnos_y_condiciones,
+          emp_terminos_y_condiciones,
           emp_fecha_creacion,
           emp_descripcion,
           id,
