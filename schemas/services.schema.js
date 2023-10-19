@@ -6,12 +6,12 @@ const ser_codigo = Joi.number();
 const ser_nombre = Joi.string().min(2).max(45).regex(/^[a-zA-Z,.;:ñÑáéíóúÁÉÍÓÚ\s\-" ]+$/);
 const ser_descripcion = Joi.string().min(2).max(1000).regex(/^[a-zA-Z,.;:ñÑáéíóúÁÉÍÓÚ\s\-" ]+$/);
 const ser_valor = Joi.string().max(45).regex(/^[0-9]+$/);
-const ser_foto = Joi.string().max(120);
+const ser_foto = Joi.string();
 const fk_ser_emp_codigo = Joi.number();
 
 //Regla para crear servicio
 const createServicesSchema = Joi.object({
-  ser_codigo: ser_codigo.required(),
+  ser_codigo: ser_codigo,
   ser_nombre: ser_nombre.required(),
   ser_descripcion: ser_descripcion.required(),
   ser_valor: ser_valor.required(),

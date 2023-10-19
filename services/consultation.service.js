@@ -24,7 +24,7 @@ class consultationService {
   }
   //Buscar una consulta
   async getOneConsultation(radicado) {
-    const sql = 'SELECT * FROM consulta WHERE con_radicado=?';
+    const sql = "SELECT *, DATE_FORMAT(con_fecha, '%Y-%m-%d') AS con_fecha, DATE_FORMAT(con_fecha_finalizacion,'%Y-%m-%d') AS con_fecha_finalizacion FROM consulta WHERE con_radicado=?";
     return new Promise((resolve, reject) => {
       conn.query(sql, radicado, (err, res) => {
         if (err) {
@@ -41,7 +41,7 @@ class consultationService {
   }
    //Buscar por granjero
    async getDocumenUser(cedula) {
-    const sql = 'SELECT * FROM consulta WHERE fk_con_gra_cedula=?';
+    const sql = "SELECT *, DATE_FORMAT(con_fecha, '%Y-%m-%d') AS con_fecha, DATE_FORMAT(con_fecha_finalizacion,'%Y-%m-%d') AS con_fecha_finalizacion FROM consulta WHERE fk_con_gra_cedula=?";
     return new Promise((resolve, reject) => {
       conn.query(sql, cedula, (err, res) => {
         if (err) {
