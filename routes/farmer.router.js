@@ -8,6 +8,8 @@ const farmerService = require('./../services/farmer.service');
 const validatorHandler = require('./../middlewares/validator.handler');
 //llamar a node mailer
 const nodemailer = require('nodemailer');
+//ENV
+require('dotenv').config();
 const {
   createFarmerSchema,
   getFarmerSchema,
@@ -38,7 +40,7 @@ router.post('/recover-pw', async (req, res) => {
     const { farmer, newPassword } = await service.recoveryPassword(farmerData);
 
     await transporter.sendMail({
-      from: 'edriball@gmail.com',
+      from: process.env.USER_EMAIL,
       to: farmer.gra_email,
       subject: 'Recuperar contraseña ✔',
       html: `<b>Tu nueva contraseña es: ${newPassword}</b>`,
@@ -60,8 +62,8 @@ const transporter = nodemailer.createTransport({
   port: 465,
   secure: true,
   auth: {
-    user: '',
-    pass: '',
+    user: process.env.USER_EMAIL,
+    pass: process.env.KEY_APP,
   },
 });
 
