@@ -6,6 +6,8 @@ const jwt = require('jsonwebtoken');
 const farmerService = require('./../services/farmer.service');
 //llamar middlewares
 const validatorHandler = require('./../middlewares/validator.handler');
+//llamar a node mailer
+const nodemailer = require('nodemailer');
 const {
   createFarmerSchema,
   getFarmerSchema,
@@ -29,6 +31,40 @@ router.post('/login', async (req, res) => {
   }
 });
 
+//ruta recover password
+router.post('/recover-pw', async (req, res) => {
+  try {
+    const farmerData = req.body;
+    const { farmer, newPassword } = await service.recoveryPassword(farmerData);
+
+    await transporter.sendMail({
+      from: 'edriball@gmail.com',
+      to: farmer.gra_email,
+      subject: 'Recuperar contraseña ✔',
+      html: `<b>Tu nueva contraseña es: ${newPassword}</b>`,
+    });
+
+    res.status(200).json({ data: 'Contraseña enviada exitosamente' });
+  } catch (error) {
+    if (error === 'usuario o email invalidos') {
+      res.status(400).json({ error: 'Usuario o email inválidos' });
+    } else {
+      res.status(500).json({ error: 'Error interno del servidor' });
+    }
+  }
+});
+
+//crear transport
+const transporter = nodemailer.createTransport({
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
+  auth: {
+    user: '',
+    pass: '',
+  },
+});
+
 //Ruta para obtener granjeros
 router.get('/', async (req, res) => {
   try {
@@ -39,7 +75,8 @@ router.get('/', async (req, res) => {
   }
 });
 //Ruta para crear granjero
-router.post('/',
+router.post(
+  '/',
   validatorHandler(createFarmerSchema, 'body'),
   async (req, res) => {
     try {
@@ -49,9 +86,11 @@ router.post('/',
     } catch (error) {
       res.status(404).json({ error: error });
     }
-  });
+  }
+);
 //Ruta para editar granjero
-router.patch('/:cedula',
+router.patch(
+  '/:cedula',
   validatorHandler(getFarmerSchema, 'params'),
   validatorHandler(updateFarmerSchema, 'body'),
   async (req, res) => {
@@ -63,17 +102,20 @@ router.patch('/:cedula',
     } catch (error) {
       res.status(404).json({ error: error });
     }
-  });
+  }
+);
 //Eliminar granjero
-router.delete('/:cedula',
+router.delete(
+  '/:cedula',
   validatorHandler(getFarmerSchema, 'params'),
   async (req, res) => {
     try {
       const { cedula } = req.params;
       const farmer = await service.deleteFarmer(cedula);
-      res.status(200).json(farmer)
+      res.status(200).json(farmer);
     } catch (error) {
       res.status(404).json({ error: error });
     }
-  });
+  }
+);
 module.exports = router;
